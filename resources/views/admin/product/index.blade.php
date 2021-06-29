@@ -57,8 +57,8 @@
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <div class="btn-group">
-                                            <a class="btn btn-info" href="{{ URL::to('/admin/product/'.$product['id']) }}"><i class="fa fa-eye"></i></a>
-                                            <a class="btn btn-success" href="{{ URL::to('/admin/product/'.$product['id'].'/edit') }}"><i class="fa fa-pencil"></i></a>
+                                            <a class="btn btn-info" href="{{ URL::to('/admin/product/'.$product['id']) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            <a class="btn btn-success" href="{{ URL::to('/admin/product/'.$product['id'].'/edit') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </form>
