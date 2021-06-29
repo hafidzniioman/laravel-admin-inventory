@@ -106,6 +106,10 @@ class ProductController extends Controller
     public function show($id)
     {
         //
+        $product=\App\Product::find($id);
+        $d=['product'=>$product];
+
+        return view('admin/product/show')->with($d);
     }
 
     /**
@@ -117,6 +121,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+        $product=\App\Product::find($id);
+        $d=['product'=>$product];
+        return view('admin/product/edit')->with($d);
     }
 
     /**
@@ -129,6 +136,64 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $rules = [
+            'nama'=>'required',
+            'kode_barang'=>'required|integer',
+            'no_urut_pendaftaran'=>'required|integer',
+            'merk'=>'required',
+            'tahun_peroleh'=>'required',
+            'jumlah_barang'=>'required|integer',
+            'satuan_barang'=>'required|integer',
+            'lokasi'=>'required',
+            'imageFile'=>'required|mimes:jpg,png,jpeg,JPG',
+        ];
+        $pesan = [
+            'nama.required'=>'Nama Barang Tidak Boleh Kosong',
+            'kode_barang.required'=>'Kode Barang Tidak Boleh Kosong',
+            'no_urut_pendaftaran.required'=>'No Urut Pendaftaran Tidak Boleh Kosong',
+            'merk.required'=>'Merk Barang Tidak Boleh Kosong',
+            'tahun_peroleh.required'=>'Tahun Peroleh Tidak Boleh Kosong',
+            'jumlah_barang.required'=>'Jumlah Barang Tidak Boleh Kosong',
+            'satuan_barang.required'=>'Satuan Barang Tidak Boleh Kosong',
+            'lokasi.required'=>'Lokasi Barang Tidak Boleh Kosong',
+            'imageFile.required'=>'Gambar Tidak Boleh Kosong'
+        ];
+        $validator=Validator::make(Input::all(),$rules,$pesan);
+
+        if ($validator->fails()) {
+ 
+            //refresh halaman
+            return Redirect::to('admin/product/'.$id.'/edit')
+            ->withErrors($validator);
+ 
+        }else{
+ 
+            $image="";
+ 
+            if (!$request->file('imageFile')) {
+                # code...
+                $image=Input::get('imagePath');
+            }else{
+                $image=$request->file('imageFile')->store('productImages','public');                
+            }
+
+            $product=\App\Product::find($id);
+ 
+            $product->nama=Input::get('nama');
+            $product->kode_barang=Input::get('kode_barang');
+            $product->no_urut_pendaftaran=Input::get('no_urut_pendaftaran');
+            $product->merk=Input::get('merk');
+            $product->tahun_peroleh=Input::get('tahun_peroleh');
+            $product->jumlah_barang=Input::get('jumlah_barang');
+            $product->satuan_barang=Input::get('satuan_barang');
+            $product->lokasi=Input::get('lokasi');
+            $product->image=$image;
+            $product->save();
+ 
+            Session::flash('message','Data Barang Berhasil Diubah');
+ 
+            return Redirect::to('admin/product');
+        }
     }
 
     /**
@@ -140,5 +205,11 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        $product=\App\Product::find($id);
+        $product->delete();
+
+        Session::flash('message','Data Barang Dihapus');
+ 
+        return Redirect::to('admin/product');
     }
 }
