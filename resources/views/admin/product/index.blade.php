@@ -42,7 +42,7 @@
                             @foreach($products as $product)
                             <tr>
                                 <td class="text-center">{{ $product['id'] }}</td>
-                                <td><img src="data:image/png,' . DNS2D::getBarcodeHTML('4445645656', 'QRCODE')'"/></td>
+                                <td><img src="data:image/png,' . DNS1D::getBarcodeHTML('{{$product['id']}}', 'QRCODE')'"/></td>
                                 <td>{{ $product['nama'] }}</td>
                                 <td>{{ $product['kode_barang'] }}</td>
                                 <td>{{ $product['no_urut_pendaftaran'] }}</td>
