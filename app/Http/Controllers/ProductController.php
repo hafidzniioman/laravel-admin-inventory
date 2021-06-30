@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Input;
+use App\Product;
 use Redirect;
 use Session;
 
@@ -18,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products=\App\Product::all();
+        $products=Product::all();
         $data=['products'=>$products];
         return view('admin/product/index')->with($data);
     }
@@ -106,7 +107,7 @@ class ProductController extends Controller
     public function show($id)
     {
         //
-        $product=\App\Product::find($id);
+        $product=Product::find($id);
         $d=['product'=>$product];
 
         return view('admin/product/show')->with($d);
@@ -121,7 +122,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
-        $product=\App\Product::find($id);
+        $product=Product::find($id);
         $d=['product'=>$product];
         return view('admin/product/edit')->with($d);
     }
@@ -177,7 +178,7 @@ class ProductController extends Controller
                 $image=$request->file('imageFile')->store('productImages','public');                
             }
 
-            $product=\App\Product::find($id);
+            $product=Product::find($id);
  
             $product->nama=Input::get('nama');
             $product->kode_barang=Input::get('kode_barang');
@@ -205,7 +206,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
-        $product=\App\Product::find($id);
+        $product=Product::find($id);
         $product->delete();
 
         Session::flash('message','Data Barang Dihapus');

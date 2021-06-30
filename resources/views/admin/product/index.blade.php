@@ -7,7 +7,7 @@
                 <h3 class="card-title">Data Barang</h3>
                 <div class="card-tools">
                  <a href="{{ URL::to('/admin/product/create')}}" class="btn btn-tool">
-                     <i class="fa fa-plus"></i>
+                     <i class="fas fa-plus"></i>
                      &nbsp; Add
                  </a>
              </div>
@@ -28,7 +28,7 @@
                                 <th>QR Code</th>
                                 <th>Nama Barang</th>
                                 <th>Kode Barang</th>
-                                <th>No Urut Pendaftaran</th>
+                                <th>No Urut <br>Pendaftaran</th>
                                 <th>Merk</th>
                                 <th>Tahun Peroleh</th>
                                 <th>Jumlah Barang</th>
@@ -42,7 +42,7 @@
                             @foreach($products as $product)
                             <tr>
                                 <td class="text-center">{{ $product['id'] }}</td>
-                                <td><img src="data:image/png,' . DNS1D::getBarcodeHTML('{{$product['id']}}', 'QRCODE')'"/></td>
+                                <td><img src="data:image/jpg,' . DNS1D::getBarcodeHTML('{{$product['id']}}', 'QRCODE')'"/></td>
                                 <td>{{ $product['nama'] }}</td>
                                 <td>{{ $product['kode_barang'] }}</td>
                                 <td>{{ $product['no_urut_pendaftaran'] }}</td>
@@ -57,9 +57,9 @@
                                         {{ csrf_field() }}
                                         <input type="hidden" name="_method" value="DELETE" />
                                         <div class="btn-group">
-                                            <a class="btn btn-info" href="{{ URL::to('/admin/product/'.$product['id']) }}"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                            <a class="btn btn-success" href="{{ URL::to('/admin/product/'.$product['id'].'/edit') }}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                            <a class="btn btn-info" href="{{ URL::to('/admin/product/'.$product['id']) }}"><i class="fas fa-eye" aria-hidden="true"></i></a>
+                                            <a class="btn btn-success" href="{{ URL::to('/admin/product/'.$product['id'].'/edit') }}"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
                                         </div>
                                     </form>
                                 </td>
