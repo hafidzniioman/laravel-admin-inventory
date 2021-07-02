@@ -48,7 +48,7 @@
                                         require_once('lte/phpqrcode/qrlib.php');
                                         $qr = QRcode::png("$kode",$product['id']."_".$product['nama']."_".$product['kode_barang'].".png", "M", 4,4);
                                         ?>
-                                        <img src="kode<?php $qr ?>.png" alt="">
+                                        <img src="{{ $qr }}" alt="">
                                     </td>
                                     <td>{{ $product['nama'] }}</td>
                                     <td>{{ $product['kode_barang'] }}</td>
