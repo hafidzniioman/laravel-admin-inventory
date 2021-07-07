@@ -44,11 +44,11 @@
                                     <td class="text-center">{{ $product['id'] }}</td>
                                     <td>
                                         <?php 
-                                        $kode = $product['nama']."/".$product['id']."/".$product['kode_barang']."";
                                         require_once('lte/phpqrcode/qrlib.php');
-                                        $qr = QRcode::png("$kode",$product['id']."_".$product['nama']."_".$product['kode_barang'].".png", "M", 4,4);
+                                        $kode = $product['id'];
+                                        $qr = QRcode::png("$kode",$product['id'].".png","M", 2,2); 
                                         ?>
-                                        <img src="{{ $qr }}" alt="">
+                                        <img src="{{ asset('public/'.$qr) }}" alt="qrcode">
                                     </td>
                                     <td>{{ $product['nama'] }}</td>
                                     <td>{{ $product['kode_barang'] }}</td>
