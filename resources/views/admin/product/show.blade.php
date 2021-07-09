@@ -48,10 +48,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="status">Barcode Barang</label>
-                            @php
-                                $generatorPNG = new Picqer\Barcode\BarcodeGeneratorPNG();
-                            @endphp
-                            <img src="data:image/png;base64,{{ base64_encode($generatorPNG->getBarcode($product['id'], $generatorPNG::TYPE_CODE_39_CHECKSUM)) }}" alt="barcode">
+                            
                         </div>
                         <div class="col-md-2">
                             <label for="status">Gambar Barang</label>

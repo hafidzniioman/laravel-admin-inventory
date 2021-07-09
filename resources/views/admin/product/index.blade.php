@@ -39,17 +39,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($products as $product)
+                                <?php $i = 1;
+                                foreach($products as $product) : ?>
                                 <tr>
-                                    <td class="text-center">{{ $product['id'] }}</td>
-                                    <td>
-                                        <?php 
-                                        require_once('lte/phpqrcode/qrlib.php');
-                                        $kode = $product['id'];
-                                        $qr = QRcode::png("$kode",$product['id'].".png","M", 2,2); 
-                                        ?>
-                                        <img src="{{ asset('public/'.$qr) }}" alt="qrcode">
-                                    </td>
+                                    <td class="text-center">{{$i++}}</td>
+                                    <td>QR Code</td>
                                     <td>{{ $product['nama'] }}</td>
                                     <td>{{ $product['kode_barang'] }}</td>
                                     <td>{{ $product['no_urut_pendaftaran'] }}</td>
@@ -71,7 +65,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                                @endforeach
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
