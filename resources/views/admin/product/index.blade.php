@@ -43,7 +43,7 @@
                                 foreach($products as $product) : ?>
                                 <tr>
                                     <td class="text-center">{{$i++}}</td>
-                                    <td>QR Code</td>
+                                    <td><img  src="https://api.qrserver.com/v1/create-qr-code/?data={{$product['nama']."_".$product['kode_barang']."_".$product['merk']."_".$product['tahun_peroleh']}}&size=150x150" class="qr-code img-thumbnail img-responsive" alt=""></td> 
                                     <td>{{ $product['nama'] }}</td>
                                     <td>{{ $product['kode_barang'] }}</td>
                                     <td>{{ $product['no_urut_pendaftaran'] }}</td>
@@ -74,5 +74,5 @@
         </div>
     </div>
     </div>
-    
+
     @endsection

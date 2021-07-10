@@ -48,7 +48,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="status">Barcode Barang</label>
-                            
+                            <img  src="https://api.qrserver.com/v1/create-qr-code/?data={{$product['nama']."_".$product['kode_barang']."_".$product['merk']."_".$product['tahun_peroleh']}}&size=150x150" class="qr-code img-thumbnail img-responsive" alt="">
                         </div>
                         <div class="col-md-2">
                             <label for="status">Gambar Barang</label>
