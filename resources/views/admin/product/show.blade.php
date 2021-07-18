@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-2">
                             <label for="status">Gambar Barang</label>
-                            <img src="{{ asset('storage/'.$product['image']) }}"
+                            <img src="{{ asset('product/'.$product['image']) }}"
                                 height="200" width="100%"/>
                         </div>
                     </div>

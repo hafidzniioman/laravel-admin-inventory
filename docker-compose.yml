@@ -1,11 +1,11 @@
 version: '3.7'
 services: 
     app:
-        build: 
-            context: .
-            dockerfile: Dockerfile
+        #build: 
+        #    context: .
+        #    dockerfile: Dockerfile
         container_name: app
-        image: hafidzniioman/projects:inventory-v1.0
+        image: hafidzniioman/projects:inventory-v1.1
         restart: unless-stopped
         tty: true
         working_dir: /var/www/

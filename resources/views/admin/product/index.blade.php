@@ -52,7 +52,7 @@
                                     <td>{{ $product['jumlah_barang'] }}</td>
                                     <td>{{ $product['satuan_barang'] }}</td>
                                     <td>{{ $product['lokasi'] }}</td>
-                                    <td class="text-center"><img src="{{ asset('storage/'.$product['image']) }}" width="100"/></td>
+                                    <td class="text-center"><img src="{{ asset('product/'.$product['image']) }}" width="100"/></td>
                                     <td class="text-center">
                                         <form method="POST" action="{{ URL::to('/admin/product/'.$product['id']) }}">
                                             {{ csrf_field() }}
