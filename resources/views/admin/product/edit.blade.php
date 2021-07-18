@@ -60,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-2">
-                        <img src="{{ asset('storage/'.$product['image'])}}" width="100%" height="200">
+                        <img src="{{ asset('product/'.$product['image'])}}" width="100%" height="200">
                     </div>
                 </div>
             </div>

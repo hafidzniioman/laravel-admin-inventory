@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\Product;
 use Redirect;
 use Session;
+use File;
 
 class ProductController extends Controller
 {
@@ -180,13 +181,16 @@ class ProductController extends Controller
             
         }else{
             
-            $image="";
-            
-            if (!$request->file('imageFile')) {
-                # code...
-                $image=Input::get('imagePath');
-            }else{
-                $image=$request->file('imageFile')->store('productImages','public');                
+            $path = public_path('product/');
+            if(!File::exists($path)){
+                File::makeDirectory($path, $mode = 0755, true, true);
+            }
+
+            $file_name = '';
+            if($request->hasFile('imageFile')){
+                $image=$request->file('imageFile');
+                $file_name = $image->getClientOriginalName();
+                $image->move($path,$file_name);
             }
             
             $product=Product::find($id);
@@ -199,7 +203,7 @@ class ProductController extends Controller
             $product->jumlah_barang=Input::get('jumlah_barang');
             $product->satuan_barang=Input::get('satuan_barang');
             $product->lokasi=Input::get('lokasi');
-            $product->image=$image;
+            $product->image=$file_name;
             $product->save();
             
             Session::flash('message','Data Barang Berhasil Diubah');
